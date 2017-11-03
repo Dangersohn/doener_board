@@ -17,10 +17,9 @@ func init() {
 
 func main() {
 	router := httprouter.New()
-	http.Handle("/public/", http.StripPrefix("/public/", http.FileServer(http.Dir("public"))))
 	router.GET("/", view)
 	router.GET("/api", api)
-	log.Fatal(http.ListenAndServe(":8080", router))
+	log.Fatal(http.ListenAndServe(":8000", router))
 }
 
 func view(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
@@ -30,8 +29,6 @@ func view(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 
 func api(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	r.ParseForm()
-
+	fmt.Println(r.Form["salat"])
 	fmt.Println(r.Form)
-	fmt.Println(r.Form["sosse1"])
-	fmt.Println(r.Form["sosse2"])
 }
