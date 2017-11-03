@@ -56,7 +56,6 @@ func api(c echo.Context) error {
 		Salat3: c.QueryParam("salat3"),
 		Salat4: c.QueryParam("salat4"),
 	}
-	fmt.Println(doener)
 	return c.Render(http.StatusOK, "doener.html", doener)
 }
 
