@@ -14,6 +14,16 @@ type Template struct {
 	templates *template.Template
 }
 
+type Doener struct {
+	Sosse1 string
+	Sosse2 string
+	Sosse3 string
+	Salat1 string
+	Salat2 string
+	Salat3 string
+	Salat4 string
+}
+
 func (t *Template) Render(w io.Writer, name string, data interface{}, c echo.Context) error {
 	return t.templates.ExecuteTemplate(w, name, data)
 }
@@ -27,6 +37,7 @@ func main() {
 	e.Renderer = t
 	e.GET("/", show)
 	e.GET("/api", api)
+	e.Static("/images/*", "images")
 	log.Fatal(e.Start(":8000"))
 }
 
@@ -35,9 +46,18 @@ func show(c echo.Context) error {
 }
 
 func api(c echo.Context) error {
-	sosse := c.QueryParam("sosse")
-	fmt.Println(sosse)
-	return c.String(http.StatusOK, "Soßen: "+sosse)
+	fmt.Println(c.QueryParam("sosse1"))
+	doener := Doener{
+		Sosse1: c.QueryParam("sosse1"),
+		Sosse2: c.QueryParam("sosse2"),
+		Sosse3: c.QueryParam("sosse3"),
+		Salat1: c.QueryParam("salat1"),
+		Salat2: c.QueryParam("salat2"),
+		Salat3: c.QueryParam("salat3"),
+		Salat4: c.QueryParam("salat4"),
+	}
+	fmt.Println(doener)
+	return c.Render(http.StatusOK, "doener.html", doener)
 }
 
 //func api(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
