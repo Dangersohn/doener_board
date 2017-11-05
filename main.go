@@ -15,13 +15,14 @@ type Template struct {
 }
 
 type Doener struct {
-	Sosse1 string
-	Sosse2 string
-	Sosse3 string
-	Salat1 string
-	Salat2 string
-	Salat3 string
-	Salat4 string
+	Kuerzel string
+	Sosse1  string
+	Sosse2  string
+	Sosse3  string
+	Salat1  string
+	Salat2  string
+	Salat3  string
+	Salat4  string
 }
 
 func (t *Template) Render(w io.Writer, name string, data interface{}, c echo.Context) error {
@@ -48,13 +49,14 @@ func show(c echo.Context) error {
 func api(c echo.Context) error {
 	fmt.Println(c.QueryParam("sosse1"))
 	doener := Doener{
-		Sosse1: c.QueryParam("sosse1"),
-		Sosse2: c.QueryParam("sosse2"),
-		Sosse3: c.QueryParam("sosse3"),
-		Salat1: c.QueryParam("salat1"),
-		Salat2: c.QueryParam("salat2"),
-		Salat3: c.QueryParam("salat3"),
-		Salat4: c.QueryParam("salat4"),
+		Kuerzel: c.QueryParam("kuerzel"),
+		Sosse1:  c.QueryParam("sosse1"),
+		Sosse2:  c.QueryParam("sosse2"),
+		Sosse3:  c.QueryParam("sosse3"),
+		Salat1:  c.QueryParam("salat1"),
+		Salat2:  c.QueryParam("salat2"),
+		Salat3:  c.QueryParam("salat3"),
+		Salat4:  c.QueryParam("salat4"),
 	}
 	return c.Render(http.StatusOK, "doener.html", doener)
 }
