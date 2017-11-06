@@ -46,8 +46,8 @@ func show(c echo.Context) error {
 	return c.Render(http.StatusOK, "index.html", nil)
 }
 
+
 func api(c echo.Context) error {
-	fmt.Println(c.QueryParam("sosse1"))
 	doener := Doener{
 		Kuerzel: c.QueryParam("kuerzel"),
 		Sosse1:  c.QueryParam("sosse1"),
