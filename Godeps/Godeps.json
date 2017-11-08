@@ -1,0 +1,107 @@
+{
+	"ImportPath": "doener_board",
+	"GoVersion": "go1.9",
+	"GodepVersion": "v79",
+	"Packages": [
+		"./..."
+	],
+	"Deps": [
+		{
+			"ImportPath": "github.com/golang/snappy",
+			"Rev": "553a641470496b2327abcac10b36396bd98e45c9"
+		},
+		{
+			"ImportPath": "github.com/labstack/echo",
+			"Comment": "3.2.3-8-gb28538b",
+			"Rev": "b28538b2e3f5446fe6e0e47ee34cd74b662ca2ab"
+		},
+		{
+			"ImportPath": "github.com/labstack/gommon/color",
+			"Comment": "0.2.3",
+			"Rev": "57409ada9da0f2afad6664c49502f8c50fbd8476"
+		},
+		{
+			"ImportPath": "github.com/labstack/gommon/log",
+			"Comment": "0.2.3",
+			"Rev": "57409ada9da0f2afad6664c49502f8c50fbd8476"
+		},
+		{
+			"ImportPath": "github.com/mattn/go-colorable",
+			"Comment": "v0.0.9-6-gad5389d",
+			"Rev": "ad5389df28cdac544c99bd7b9161a0b5b6ca9d1b"
+		},
+		{
+			"ImportPath": "github.com/mattn/go-isatty",
+			"Comment": "v0.0.3-1-ga5cdd64",
+			"Rev": "a5cdd64afdee435007ee3e9f6ed4684af949d568"
+		},
+		{
+			"ImportPath": "github.com/syndtr/goleveldb/leveldb",
+			"Rev": "549b6d6b1c0419617182954dd77770f2e2685ed5"
+		},
+		{
+			"ImportPath": "github.com/syndtr/goleveldb/leveldb/cache",
+			"Rev": "549b6d6b1c0419617182954dd77770f2e2685ed5"
+		},
+		{
+			"ImportPath": "github.com/syndtr/goleveldb/leveldb/comparer",
+			"Rev": "549b6d6b1c0419617182954dd77770f2e2685ed5"
+		},
+		{
+			"ImportPath": "github.com/syndtr/goleveldb/leveldb/errors",
+			"Rev": "549b6d6b1c0419617182954dd77770f2e2685ed5"
+		},
+		{
+			"ImportPath": "github.com/syndtr/goleveldb/leveldb/filter",
+			"Rev": "549b6d6b1c0419617182954dd77770f2e2685ed5"
+		},
+		{
+			"ImportPath": "github.com/syndtr/goleveldb/leveldb/iterator",
+			"Rev": "549b6d6b1c0419617182954dd77770f2e2685ed5"
+		},
+		{
+			"ImportPath": "github.com/syndtr/goleveldb/leveldb/journal",
+			"Rev": "549b6d6b1c0419617182954dd77770f2e2685ed5"
+		},
+		{
+			"ImportPath": "github.com/syndtr/goleveldb/leveldb/memdb",
+			"Rev": "549b6d6b1c0419617182954dd77770f2e2685ed5"
+		},
+		{
+			"ImportPath": "github.com/syndtr/goleveldb/leveldb/opt",
+			"Rev": "549b6d6b1c0419617182954dd77770f2e2685ed5"
+		},
+		{
+			"ImportPath": "github.com/syndtr/goleveldb/leveldb/storage",
+			"Rev": "549b6d6b1c0419617182954dd77770f2e2685ed5"
+		},
+		{
+			"ImportPath": "github.com/syndtr/goleveldb/leveldb/table",
+			"Rev": "549b6d6b1c0419617182954dd77770f2e2685ed5"
+		},
+		{
+			"ImportPath": "github.com/syndtr/goleveldb/leveldb/util",
+			"Rev": "549b6d6b1c0419617182954dd77770f2e2685ed5"
+		},
+		{
+			"ImportPath": "github.com/valyala/bytebufferpool",
+			"Rev": "e746df99fe4a3986f4d4f79e13c1e0117ce9c2f7"
+		},
+		{
+			"ImportPath": "github.com/valyala/fasttemplate",
+			"Rev": "dcecefd839c4193db0d35b88ec65b4c12d360ab0"
+		},
+		{
+			"ImportPath": "golang.org/x/crypto/acme",
+			"Rev": "bd6f299fb381e4c3393d1c4b1f0b94f5e77650c8"
+		},
+		{
+			"ImportPath": "golang.org/x/crypto/acme/autocert",
+			"Rev": "bd6f299fb381e4c3393d1c4b1f0b94f5e77650c8"
+		},
+		{
+			"ImportPath": "golang.org/x/sys/unix",
+			"Rev": "75813c647272dd855bda156405bf844a5414f5bf"
+		}
+	]
+}
