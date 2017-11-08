@@ -7,6 +7,7 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"strings"
 	"time"
 
 	"github.com/labstack/echo"
@@ -61,7 +62,7 @@ func show(c echo.Context) error {
 
 func api(c echo.Context) error {
 	doener := Doener{
-		Kuerzel: c.QueryParam("kuerzel"),
+		Kuerzel: strings.ToUpper(c.QueryParam("kuerzel")),
 		Sosse1:  c.QueryParam("sosse1"),
 		Sosse2:  c.QueryParam("sosse2"),
 		Sosse3:  c.QueryParam("sosse3"),
@@ -96,6 +97,5 @@ func allEntrys(c echo.Context) error {
 	}
 	iter.Release()
 
-	fmt.Println(doener)
-	return iter.Error()
+	return c.Render(http.StatusOK, "allEntrys.html", doener)
 }
