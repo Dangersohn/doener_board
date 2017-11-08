@@ -7,6 +7,7 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"os"
 	"strings"
 	"time"
 
@@ -53,7 +54,7 @@ func main() {
 	e.GET("/api", api)
 	e.GET("/allEntrys", allEntrys)
 	e.Static("/images/*", "images")
-	log.Fatal(e.Start(":8000"))
+	log.Fatal(e.Start(":" + os.Getenv("PORT")))
 }
 
 func show(c echo.Context) error {
