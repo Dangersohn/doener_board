@@ -1,13 +1,18 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"html/template"
 	"io"
 	"log"
 	"net/http"
+	"time"
 
 	"github.com/labstack/echo"
+
+	"github.com/syndtr/goleveldb/leveldb"
+	"github.com/syndtr/goleveldb/leveldb/util"
 )
 
 type Template struct {
@@ -29,15 +34,23 @@ func (t *Template) Render(w io.Writer, name string, data interface{}, c echo.Con
 	return t.templates.ExecuteTemplate(w, name, data)
 }
 
+var db *leveldb.DB
+
 func main() {
+
 	t := &Template{
 		templates: template.Must(template.ParseGlob("template/*.html")),
 	}
+
+	db, _ = leveldb.OpenFile("db", nil)
+
+	defer db.Close()
 
 	e := echo.New()
 	e.Renderer = t
 	e.GET("/", show)
 	e.GET("/api", api)
+	e.GET("/allEntrys", allEntrys)
 	e.Static("/images/*", "images")
 	log.Fatal(e.Start(":8000"))
 }
@@ -45,7 +58,6 @@ func main() {
 func show(c echo.Context) error {
 	return c.Render(http.StatusOK, "index.html", nil)
 }
-
 
 func api(c echo.Context) error {
 	doener := Doener{
@@ -58,11 +70,32 @@ func api(c echo.Context) error {
 		Salat3:  c.QueryParam("salat3"),
 		Salat4:  c.QueryParam("salat4"),
 	}
+	j, _ := json.Marshal(doener)
+
+	t := time.Now().Format(time.RFC3339Nano)
+
+	err := db.Put([]byte(t), j, nil)
+	if err != nil {
+		fmt.Println(err)
+	}
+
 	return c.Render(http.StatusOK, "doener.html", doener)
 }
 
-//func api(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-//	r.ParseForm()
-//	fmt.Println(r.Form["salat"])
-//	fmt.Println(r.Form)
-//}
+func allEntrys(c echo.Context) error {
+
+	var doener []Doener
+
+	iter := db.NewIterator(util.BytesPrefix([]byte(time.Now().Format("2006-01-02"))), nil)
+	for iter.Next() {
+		var d Doener
+		json.Unmarshal(iter.Value(), &d)
+
+		doener = append(doener, d)
+
+	}
+	iter.Release()
+
+	fmt.Println(doener)
+	return iter.Error()
+}
