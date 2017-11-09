@@ -23,19 +23,25 @@
 
 <body>
     <div class="container-fluid">
-     <h1>Dein Döner {{.Kuerzel}}</h1>  
-     <p>Du möchtest folgeden Soße: <br>
-        {{.Sosse1}}
-        {{.Sosse2}}
-        {{.Sosse3}}
-    </p><br>
-    <p>Das soll noch auf deinen Döner:<br>
-        {{.Salat1}}
-        {{.Salat2}}
-        {{.Salat3}}
-        {{.Salat4}}
-    </p>
-   
+        <div class="card" style="width: 22rem;">
+            <div class="card-block">
+
+                <h4 class="card-title text-center">Döner von {{.Kuerzel}}</h4>
+                <h5 >Soße:</h5>
+                <p><center>{{.Sosse1}}</center></p>
+                <p><center>{{.Sosse2}}</center></p>
+                <p><center>{{.Sosse3}}</center></p>
+            
+                <h5 >Salat:</h5>
+                <p><center>{{.Salat1}}</center></p>
+                <p><center>{{.Salat2}}</center></p>
+                <p><center>{{.Salat3}}</center></p>
+                <p><center>{{.Salat4}}</center></p>
+            </div>
+        </div>
+        <form action="/orders">
+            <input type="submit" value="Alle bestellungen" />
+        </form>
     </div>
 </body>
 

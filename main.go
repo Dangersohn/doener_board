@@ -52,7 +52,7 @@ func main() {
 	e.Renderer = t
 	e.GET("/", show)
 	e.GET("/api", api)
-	e.GET("/allEntrys", allEntrys)
+	e.GET("/orders", orders)
 	e.Static("/images/*", "images")
 	log.Fatal(e.Start(":" + os.Getenv("PORT")))
 }
@@ -84,7 +84,7 @@ func api(c echo.Context) error {
 	return c.Render(http.StatusOK, "doener.html", doener)
 }
 
-func allEntrys(c echo.Context) error {
+func orders(c echo.Context) error {
 
 	var doener []Doener
 
@@ -98,5 +98,5 @@ func allEntrys(c echo.Context) error {
 	}
 	iter.Release()
 
-	return c.Render(http.StatusOK, "allEntrys.html", doener)
+	return c.Render(http.StatusOK, "orders.html", doener)
 }
