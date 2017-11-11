@@ -9,32 +9,59 @@
     <meta name="description" content="The HTML5 Herald">
     <meta name="author" content="SitePoint">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
-        crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
-        crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
 
 </head>
 
 <body>
-    <div class="container-fluid">
-        <div class="card" style="width: 30rem;">
+    
+<div class="container-fluid">
+
+        <div class="card" style="width: 20rem;">
             <img class="card-img-top" src="images/doener.jpg" alt="Card image cap" data-toggle="collapse" href="#collapseExample" aria-expanded="false"
                 aria-controls="collapseExample">
-                <div class="collapse" id="collapseExample">
+            <div class="collapse" id="collapseExample">
+                <div class="card card-block">
+                    <form action="/api">
+                        <label for="text-input">Küerzel</label>
+                        <input type="text" class="form-control" name="kuerzel" placeholder="Kürzel eingeben">
+                        <p>Soße</p>
+                        <input type="checkbox" name="sosse1" value="Knoblauch">Knoblauch
+                        <br>
+                        <input type="checkbox" name="sosse2" value="Kraeuter">Kräuter
+                        <br>
+                        <input type="checkbox" name="sosse3" value="Scharf">Scharf
+                        <br>
+                        <a>Salat</a>
+                        <br>
+                        <input type="checkbox" name="salat1" value="Zwiebeln">Zwiebeln
+                        <br>
+                        <input type="checkbox" name="salat2" value="Rotkohl">Rotkohl
+                        <br>
+                        <input type="checkbox" name="salat3" value="Tomaten">Tomaten
+                        <br>
+                        <input type="checkbox" name="salat4" value="Ohne salat">ohne Salat
+                        <br>
+                        <input type="submit" value="Submit">
+                    </form>
+                </div>
+            </div>
+
+            <div class="card" style="width: 20rem;">
+                <img class="card-img-top" src="images/test.jpg" alt="Card image cap" data-toggle="collapse" href="#collapseBox" aria-expanded="false"
+                    aria-controls="collapseBox">
+                <div class="collapse" id="collapseBox">
                     <div class="card card-block">
-                        <form action="/api">
+                        <form action="/box">
                             <label for="text-input">Küerzel</label>
                             <input type="text" class="form-control" name="kuerzel" placeholder="Kürzel eingeben">
                             <p>Soße</p>
                             <input type="checkbox" name="sosse1" value="Knoblauch">Knoblauch
                             <br>
-                            <input type="checkbox" name="sosse2" value="Kraeuter">Kräuter
+                            <input type="checkbox" name="sosse2" value="Kraeuter">Kraeuter
                             <br>
                             <input type="checkbox" name="sosse3" value="Scharf">Scharf
                             <br>
@@ -46,13 +73,18 @@
                             <br>
                             <input type="checkbox" name="salat3" value="Tomaten">Tomaten
                             <br>
-                            <input type="checkbox" name="salat4" value="Ohne salat">ohne Salat
+                            <input type="checkbox" name="salat4" value="Pommes">Pommes
                             <br>
                             <input type="submit" value="Submit">
                         </form>
-                    </div>                    
+                    </div>
+                </div>
+
             </div>
-        </div>
+
+            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 </body>
 
 </html>

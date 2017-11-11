@@ -51,6 +51,7 @@ func main() {
 	e := echo.New()
 	e.Renderer = t
 	e.GET("/", show)
+	e.GET("/box", box)
 	e.GET("/api", api)
 	e.GET("/orders", orders)
 	e.Static("/images/*", "images")
@@ -58,7 +59,11 @@ func main() {
 }
 
 func show(c echo.Context) error {
-	return c.Render(http.StatusOK, "index.html", nil)
+	return c.Render(http.StatusOK, "new_index.html", nil)
+}
+
+func box(c echo.Context) error {
+	return c.Render(http.StatusOK, "nico.html", nil)
 }
 
 func api(c echo.Context) error {
