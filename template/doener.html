@@ -15,39 +15,45 @@
 <body>
 
     <div class="container-fluid">
-        <div class="card">
-            <div class="card-block">
+        <div class="col-sm-12 col-md-12 col-lg-4">
+            <div class="card">
+                <div class="card-block">
 
-                <h4 class="card-title text-center">Döner von {{.Kuerzel}}</h4>
-                <h5><center>Soße:</center></h5>
-                <p>
-                    <center>{{.Sosse1}}</center>
-                </p>
-                <p>
-                    <center>{{.Sosse2}}</center>
-                </p>
-                <p>
-                    <center>{{.Sosse3}}</center>
-                </p>
+                    <h4 class="card-title text-center">{{.Gericht}} von {{.Kuerzel}}</h4>
+                    <h5>
+                        <center>Soße:</center>
+                    </h5>
+                    <p>
+                        <center>{{.Sosse1}}</center>
+                    </p>
+                    <p>
+                        <center>{{.Sosse2}}</center>
+                    </p>
+                    <p>
+                        <center>{{.Sosse3}}</center>
+                    </p>
 
-                <h5><center>Salat:</center></h5>
-                <p>
-                    <center>{{.Salat1}}</center>
-                </p>
-                <p>
-                    <center>{{.Salat2}}</center>
-                </p>
-                <p>
-                    <center>{{.Salat3}}</center>
-                </p>
-                <p>
-                    <center>{{.Salat4}}</center>
-                </p>
+                    <h5>
+                        <center>Salat:</center>
+                    </h5>
+                    <p>
+                        <center>{{.Salat1}}</center>
+                    </p>
+                    <p>
+                        <center>{{.Salat2}}</center>
+                    </p>
+                    <p>
+                        <center>{{.Salat3}}</center>
+                    </p>
+                    <p>
+                        <center>{{.Salat4}}</center>
+                    </p>
+                </div>
             </div>
+            <form action="/orders">
+                <input type="submit" value="Alle bestellungen" />
+            </form>
         </div>
-        <form action="/orders">
-            <input type="submit" value="Alle bestellungen" />
-        </form>
     </div>
 
     <!-- Optional JavaScript -->

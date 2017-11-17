@@ -23,6 +23,7 @@ type Template struct {
 
 type Doener struct {
 	Kuerzel string
+	Gericht string
 	Sosse1  string
 	Sosse2  string
 	Sosse3  string
@@ -60,7 +61,7 @@ func main() {
 }
 
 func show(c echo.Context) error {
-	return c.Render(http.StatusOK, "new_index.html", nil)
+	return c.Render(http.StatusOK, "index.html", nil)
 }
 
 func box(c echo.Context) error {
@@ -74,6 +75,7 @@ func jana(c echo.Context) error {
 func api(c echo.Context) error {
 	doener := Doener{
 		Kuerzel: strings.ToUpper(c.QueryParam("kuerzel")),
+		Gericht: c.QueryParam("gericht"),
 		Sosse1:  c.QueryParam("sosse1"),
 		Sosse2:  c.QueryParam("sosse2"),
 		Sosse3:  c.QueryParam("sosse3"),
