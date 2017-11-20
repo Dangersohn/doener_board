@@ -1,7 +1,6 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 	"html/template"
 	"io"
@@ -13,8 +12,8 @@ import (
 
 	"github.com/labstack/echo"
 
-	"github.com/syndtr/goleveldb/leveldb"
-	"github.com/syndtr/goleveldb/leveldb/util"
+	"gopkg.in/mgo.v2"
+	"gopkg.in/mgo.v2/bson"
 )
 
 type Template struct {
@@ -22,6 +21,7 @@ type Template struct {
 }
 
 type Doener struct {
+	Zeit    string
 	Kuerzel string
 	Gericht string
 	Sosse1  string
@@ -37,18 +37,34 @@ func (t *Template) Render(w io.Writer, name string, data interface{}, c echo.Con
 	return t.templates.ExecuteTemplate(w, name, data)
 }
 
-var db *leveldb.DB
+//DB STUFF
+const (
+	//MongoDBHost ist der Hostname
+	MongoDBHost = "127.0.0.1:27017"
+	//DBName ist der Name der DB
+	DBName = "test"
+	//CollectionName ist der Name der Collection
+	CollectionName = "people"
+)
+
+var mgoSession *mgo.Session
+
+func GetMongoSession() *mgo.Session {
+	if mgoSession == nil {
+		var err error
+		mgoSession, err = mgo.Dial(MongoDBHost)
+		if err != nil {
+			log.Fatal("Failed to start the Mongo session")
+		}
+	}
+	return mgoSession.Clone()
+}
 
 func main() {
 
 	t := &Template{
 		templates: template.Must(template.ParseGlob("template/*.html")),
 	}
-
-	db, _ = leveldb.OpenFile("db", nil)
-
-	defer db.Close()
-
 	e := echo.New()
 	e.Renderer = t
 	e.GET("/jana", jana)
@@ -73,7 +89,12 @@ func jana(c echo.Context) error {
 }
 
 func api(c echo.Context) error {
+
+	s := GetMongoSession()
+	defer s.Close()
+
 	doener := Doener{
+		Zeit:    time.Now().Format(time.RFC3339Nano),
 		Kuerzel: strings.ToUpper(c.QueryParam("kuerzel")),
 		Gericht: c.QueryParam("gericht"),
 		Sosse1:  c.QueryParam("sosse1"),
@@ -84,13 +105,11 @@ func api(c echo.Context) error {
 		Salat3:  c.QueryParam("salat3"),
 		Salat4:  c.QueryParam("salat4"),
 	}
-	j, _ := json.Marshal(doener)
-
-	t := time.Now().Format(time.RFC3339Nano)
-
-	err := db.Put([]byte(t), j, nil)
+	//j, _ := json.Marshal(doener)
+	msesion := s.DB(DBName).C(CollectionName)
+	err := msesion.Insert(doener)
 	if err != nil {
-		fmt.Println(err)
+		fmt.Print(err)
 	}
 
 	return c.Render(http.StatusOK, "doener.html", doener)
@@ -98,17 +117,25 @@ func api(c echo.Context) error {
 
 func orders(c echo.Context) error {
 
+	s := GetMongoSession()
+	defer s.Close()
+
+	msesion := s.DB(DBName).C(CollectionName)
 	var doener []Doener
-
-	iter := db.NewIterator(util.BytesPrefix([]byte(time.Now().Format("2006-01-02"))), nil)
-	for iter.Next() {
-		var d Doener
-		json.Unmarshal(iter.Value(), &d)
-
-		doener = append(doener, d)
-
+	err := msesion.Find(bson.M{}).All(&doener)
+	if err != nil {
+		fmt.Print(err)
 	}
-	iter.Release()
+
+	//iter := db.NewIterator(util.BytesPrefix([]byte(time.Now().Format("2006-01-02"))), nil)
+	//for iter.Next() {
+	//	var d Doener
+	//	json.Unmarshal(iter.Value(), &d)
+
+	//	doener = append(doener, d)
+
+	//}
+	//iter.Release()
 
 	return c.Render(http.StatusOK, "orders.html", doener)
 }
