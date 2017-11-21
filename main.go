@@ -42,9 +42,9 @@ const (
 	//MongoDBHost ist der Hostname
 	MongoDBHost = "127.0.0.1:27017"
 	//DBName ist der Name der DB
-	DBName = "test"
+	DBName = "food"
 	//CollectionName ist der Name der Collection
-	CollectionName = "people"
+	CollectionName = "orders"
 )
 
 var mgoSession *mgo.Session
@@ -132,7 +132,7 @@ func orders(c echo.Context) error {
 	//	var d Doener
 	//	json.Unmarshal(iter.Value(), &d)
 
-	//	doener = append(doener, d)
+	//	doener = append(doener,	 d)
 
 	//}
 	//iter.Release()
