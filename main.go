@@ -67,9 +67,7 @@ func main() {
 	}
 	e := echo.New()
 	e.Renderer = t
-	e.GET("/jana", jana)
 	e.GET("/", show)
-	e.GET("/box", box)
 	e.GET("/api", api)
 	e.GET("/orders", orders)
 	e.Static("/images/*", "images")
@@ -78,14 +76,6 @@ func main() {
 
 func show(c echo.Context) error {
 	return c.Render(http.StatusOK, "index.html", nil)
-}
-
-func box(c echo.Context) error {
-	return c.Render(http.StatusOK, "nico.html", nil)
-}
-
-func jana(c echo.Context) error {
-	return c.Render(http.StatusOK, "jana.html", nil)
 }
 
 func api(c echo.Context) error {
@@ -126,16 +116,5 @@ func orders(c echo.Context) error {
 	if err != nil {
 		fmt.Print(err)
 	}
-
-	//iter := db.NewIterator(util.BytesPrefix([]byte(time.Now().Format("2006-01-02"))), nil)
-	//for iter.Next() {
-	//	var d Doener
-	//	json.Unmarshal(iter.Value(), &d)
-
-	//	doener = append(doener,	 d)
-
-	//}
-	//iter.Release()
-
 	return c.Render(http.StatusOK, "orders.html", doener)
 }
