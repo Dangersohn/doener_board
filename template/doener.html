@@ -15,44 +15,34 @@
 <body>
 
     <div class="container-fluid">
-        <div class="col-sm-12 col-md-12 col-lg-4">
-            <div class="card">
-                <div class="card-block">
-
-                    <h4 class="card-title text-center">{{.Gericht}} von {{.Kuerzel}}</h4>
-                    <h5>
-                        <center>Soße:</center>
-                    </h5>
-                    <p>
-                        <center>{{.Sosse1}}</center>
-                    </p>
-                    <p>
-                        <center>{{.Sosse2}}</center>
-                    </p>
-                    <p>
-                        <center>{{.Sosse3}}</center>
-                    </p>
-
-                    <h5>
-                        <center>Salat:</center>
-                    </h5>
-                    <p>
-                        <center>{{.Salat1}}</center>
-                    </p>
-                    <p>
-                        <center>{{.Salat2}}</center>
-                    </p>
-                    <p>
-                        <center>{{.Salat3}}</center>
-                    </p>
-                    <p>
-                        <center>{{.Salat4}}</center>
-                    </p>
-                </div>
+        <div class="row justify-content-center">
+            <div class="col-sm-12 col-md-6 col-lg-6">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Gericht</th>
+                            <th>Soße</th>
+                            <th>Salat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{.Kuerzel}}</td>
+                            <td>{{.Gericht}}</td>
+                            <td>{{.Sosse1}} {{.Sosse2}} {{.Sosse3}}</td>
+                            <td>{{.Salat1}} {{.Salat2}} {{.Salat3}}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <form action="/orders">
-                <input type="submit" value="Alle bestellungen" />
-            </form>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-sm-12 col-md-6 col-lg-6">
+                <form method="get" action="/orders">
+                    <button type="button submit" class="btn btn-primary">Alle Bestellungen</button>
+                </form>
+            </div>
         </div>
     </div>
 
