@@ -71,6 +71,7 @@ func main() {
 	e.GET("/api", api)
 	e.GET("/orders", orders)
 	e.Static("/images/*", "images")
+	e.Static("/css/*", "css")
 	log.Fatal(e.Start(":" + os.Getenv("PORT")))
 }
 
